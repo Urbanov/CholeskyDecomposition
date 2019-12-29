@@ -1,0 +1,14 @@
+syntax = "proto3";
+package pw.edu.pl;
+
+option java_package = "pw.edu.pl";
+option java_multiple_files = true;
+
+message ProtobufMatrix {
+    bytes data = 1;
+}
+
+service CholeskySolver {
+    rpc SolveRow (ProtobufMatrix) returns (ProtobufMatrix);
+    rpc SolveColumn (ProtobufMatrix) returns (ProtobufMatrix);
+}

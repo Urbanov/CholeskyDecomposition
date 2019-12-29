@@ -1,8 +1,10 @@
-package pw.edu.pl
+package pw.edu.pl.solver
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import pw.edu.pl.domain.Matrix
+import pw.edu.pl.rpc.RpcClient
 import kotlin.math.sqrt
 
 class CholeskyColumn : Cholesky {
@@ -43,5 +45,9 @@ class CholeskyColumn : Cholesky {
         }
         result[matrix.rows - 1, matrix.columns - 1] = sqrt(matrix[matrix.rows - 1, matrix.columns - 1])
         return result;
+    }
+
+    override fun solveRpc(matrix: Matrix, rpcClient: RpcClient): Matrix {
+        return rpcClient.solveColumn(matrix)
     }
 }

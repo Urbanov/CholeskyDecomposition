@@ -1,8 +1,10 @@
-package pw.edu.pl
+package pw.edu.pl.solver
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import pw.edu.pl.domain.Matrix
+import pw.edu.pl.rpc.RpcClient
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -32,6 +34,10 @@ class CholeskyRow : Cholesky {
             }
         }
         return result;
+    }
+
+    override fun solveRpc(matrix: Matrix, rpcClient: RpcClient): Matrix {
+        return rpcClient.solveRow(matrix)
     }
 
     private fun calculateOuterLoopValue(source: Matrix, target: Matrix, column: Int): Double {

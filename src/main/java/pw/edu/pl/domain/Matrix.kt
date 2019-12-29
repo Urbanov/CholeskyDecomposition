@@ -1,8 +1,9 @@
-package pw.edu.pl
+package pw.edu.pl.domain
 
 import java.io.File
+import java.io.Serializable
 
-class Matrix(val rows: Int, val columns: Int, private val array: Array<Array<Double>>) : Cloneable {
+class Matrix(val rows: Int, val columns: Int, private val array: Array<Array<Double>>) : Cloneable, Serializable {
 
     companion object {
         operator fun invoke(columns: Int, rows: Int): Matrix {
